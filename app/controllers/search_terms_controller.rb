@@ -1,18 +1,15 @@
 class SearchTermsController < ApplicationController
-    
+    require './lib/assets/API_methods.rb'
+    include APIMethods
 
 
     def create
         
         @search_term = SearchTerm.new(search_term_params)
-
+        
         respond_to do |format|
             if @search_term.save
-                
-
-
-
-            
+                articles = search(@search_term.body)
               format.html { redirect_to root_path, notice: "search_term was successfully created." }
               format.json { render :show, status: :created, location: @search_term }
             else
