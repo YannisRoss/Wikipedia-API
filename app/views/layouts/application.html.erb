@@ -22,7 +22,7 @@
           <%= form.hidden_field :user_id, value: current_user.id %>
           <%= form.text_field :body %>
           
-          <%= form.submit "Search!" %>
+          <%= form.submit "Import" %>
         <% end %>
       <% else %>
         <%= link_to 'Sign up', new_user_registration_url%>
