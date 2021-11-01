@@ -18,7 +18,11 @@
         
         <%= link_to 'Sign out', destroy_user_session_url%>
 
-        
+        <%= form_with model: @search_term do |form| %>
+          <%= form.text_field :body %>
+          
+          <%= form.submit "Search!" %>
+        <% end %>
       <% else%>
         <%= link_to 'Sign up', new_user_registration_url%>
         <%= link_to 'Sign in', new_user_session_url%>
