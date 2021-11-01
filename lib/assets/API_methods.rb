@@ -22,9 +22,6 @@ module APIMethods
         if search_complete?(retrieved_articles)
           return retrieved_articles
         else
-          puts 'boutta report length'
-          puts retrieved_articles.length
-          puts "About to create entry. It is #{item['title']}"
                 unless retrieved_articles.empty?
 
                       unless WikiEntry.any? {|entry| entry.pageid == item['pageid']}
