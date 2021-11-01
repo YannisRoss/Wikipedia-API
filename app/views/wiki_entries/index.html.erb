@@ -1,4 +1,5 @@
-wikientries index
+wikientries index 
+
 
 <% if current_user%>
         <% unless WikiEntry.all.empty?%>
@@ -6,9 +7,9 @@ wikientries index
             <li>Entries count: <%= WikiEntry.all.size%> </li>
             <li>Search terms: <%= SearchTerm.all.size%> </li>   
 
-            <li>Entry with the biggest wordcount: <%= WikiEntry.all.order(:wordcount).limit(1).title%></li>
+            <li>Entry with the biggest wordcount: <%= WikiEntry.all.order(:wordcount).limit(1).first.title%></li>
             
-            <li>Entry with the lowest wordcount: <%= WikiEntry.all.order(wordcount: :desc).limit(1).title%></li>
+            <li>Entry with the lowest wordcount: <%= WikiEntry.all.order(wordcount: :desc).limit(1).first.title%></li>
 
             
             - Entry with the most words in title

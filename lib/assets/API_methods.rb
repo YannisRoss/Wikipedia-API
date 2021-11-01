@@ -4,10 +4,11 @@ module APIMethods
     require 'json'
   
     def search(search_term, sroffset = 10, retrieved_articles = [])
-      puts "Searching for #{search_term}" unless retrieved_articles.length > 0
+    
+      puts "Searching for #{search_term.body}" unless retrieved_articles.length > 0
 
 
-      uri = URI("https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=#{search_term}&format=json&sroffset=#{sroffset}")
+      uri = URI("https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=#{search_term.body}&format=json&sroffset=#{sroffset}")
       response = Net::HTTP.get_response(uri)
       json_response = JSON.parse(response.body)
 
@@ -18,20 +19,21 @@ module APIMethods
         extra_info = JSON.parse(individual_response.body)
 
         fullurl = extra_info['query']['pages'][item['pageid'].to_s]['fullurl']
-
         if search_complete?(retrieved_articles)
           return retrieved_articles
         else
+          puts 'boutta report length'
           puts retrieved_articles.length
+          puts "About to create entry. It is #{item['title']}"
                 unless retrieved_articles.empty?
 
-                      unless WikiEntry.show_ids.include?(item['pageid'])
+                      unless WikiEntry.any? {|entry| entry.pageid == item['pageid']}
       #in case the articles undergo changes during the search, or any other duplication incident
-                        retrieved_articles.push(WikiEntry.new(item['title'],item['pageid'].to_i, item['wordcount'], item['snippet'], fullurl))
-
+                        retrieved_articles.push(WikiEntry.create(search_term_id: search_term.id,title: item['title'],pageid: item['pageid'].to_i, wordcount: item['wordcount'],snippet: item['snippet'],fullurl: fullurl))
+                        
                       end
                 else
-                retrieved_articles.push(WikiEntry.new(item['title'],item['pageid'].to_i, item['wordcount'], item['snippet'], fullurl))
+                  retrieved_articles.push(WikiEntry.create(search_term_id: search_term.id, title: item['title'],pageid: item['pageid'].to_i, wordcount: item['wordcount'],snippet: item['snippet'],fullurl: fullurl))
                 end
 
                 if retrieved_articles.length < 40
@@ -45,31 +47,6 @@ module APIMethods
 
     def search_complete?(articles)
       if articles.length >= 50
-        true
-      else
-        false
-      end
-    end
-
-    def wordcount?
-      puts 'Would you like the entries sorted by wordcount?(y/n)'
-      sort_factor = gets.chomp.downcase
-        unless ['y','n'].include?(sort_factor)
-          puts 'Please provide valid input in the form of "y" or "n"'
-          wordcount_or_title?()
-        else
-          if sort_factor == 'y'
-            return true
-          else
-            return false
-          end
-        end
-    end
-
-    def descending?
-      puts 'Descending?(y/n)'
-      descending = gets.chomp.downcase
-      if descending == 'y'
         true
       else
         false
@@ -111,8 +88,7 @@ module APIMethods
       d[m][n]
     end
 
-#    articles = search(search_term)
-#    sorted_articles = sort(articles,wordcount?(), descending?())
+
 
     
 end
