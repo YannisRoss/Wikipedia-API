@@ -1,0 +1,2 @@
+module WikiEntriesHelper
+end
