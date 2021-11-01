@@ -17,6 +17,14 @@ wikientries index
             - Top 5 favourited entries
 
             </ul>
+
+
+
+
+            <% WikiEntry.all.each do |entry|%>
+            <%=link_to entry.title, entry%> <br>
+           <% end %>
+
         <% else %>
             <p> No entries yet. </p> 
         <% end %>

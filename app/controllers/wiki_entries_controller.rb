@@ -4,7 +4,9 @@ class WikiEntriesController < ApplicationController
         @wiki_entries = WikiEntry.all
     end
 
-    
+    def show
+        @wiki_entry = WikiEntry.find(params[:id])
+    end
     def create(title = 'error', pageid = 0, wordcount = 0, snippet = 'error', fullurl ='error')
         
         @wiki_entry = WikiEntry.new(wiki_entry_params)
