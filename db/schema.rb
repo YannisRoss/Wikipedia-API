@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_01_103112) do
+ActiveRecord::Schema.define(version: 2021_11_01_114102) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 2021_11_01_103112) do
   create_table "search_terms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "body"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_search_terms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,5 +46,6 @@ ActiveRecord::Schema.define(version: 2021_11_01_103112) do
     t.index ["search_term_id"], name: "index_wiki_entries_on_search_term_id"
   end
 
+  add_foreign_key "search_terms", "users"
   add_foreign_key "wiki_entries", "search_terms"
 end

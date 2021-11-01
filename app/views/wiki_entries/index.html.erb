@@ -17,7 +17,20 @@ wikientries index
 
             </ul>
         <% else %>
-            <p> No entries yet. </p>
+            <p> No entries yet. </p> 
+        <% end %>
+
+
+
+        <% if current_user.admin? %>
+
+            <p>Search terms: <%= SearchTerm.all.size%>   </p>
+            <% SearchTerm.all.each do |term|%>
+            <%= term.body%>
+            , created by <%= term.user.email%>
+            <% end %>
+
+
         <% end %>
 
 <% end %>

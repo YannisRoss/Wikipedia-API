@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -15,15 +15,16 @@
       <p class="alert"><%= alert %></p>
 
       <% if current_user%>
-        
-        <%= link_to 'Sign out', destroy_user_session_url%>
+        <div>Hello, <%= current_user.email %> </div>
+        <%= button_to 'Sign out', destroy_user_session_path, method: :delete%>
 
-        <%= form_with model: @search_term do |form| %>
+        <%= form_with model: SearchTerm.new, url: search_terms_path do |form| %>
+          <%= form.hidden_field :user_id, value: current_user.id %>
           <%= form.text_field :body %>
           
           <%= form.submit "Search!" %>
         <% end %>
-      <% else%>
+      <% else %>
         <%= link_to 'Sign up', new_user_registration_url%>
         <%= link_to 'Sign in', new_user_session_url%>
       <% end %>
