@@ -10,7 +10,7 @@ class SearchTermsController < ApplicationController
         respond_to do |format|
             if @search_term.save
                 articles = search(@search_term.body)
-              format.html { redirect_to root_path, notice: "search_term was successfully created." }
+              format.html { redirect_to root_path, notice: "search_term was successfully created. #{articles.length}" }
               format.json { render :show, status: :created, location: @search_term }
             else
                 format.html { redirect_to root_path,  alert: "search_term failed, #{@search_term.errors.full_messages.first}" , status: :unprocessable_entity }
