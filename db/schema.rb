@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2021_11_01_151424) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
+  create_table "favoritings", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "wiki_entry_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_favoritings_on_user_id"
+    t.index ["wiki_entry_id"], name: "index_favoritings_on_wiki_entry_id"
   end
 
   create_table "search_terms", force: :cascade do |t|
@@ -37,15 +40,6 @@ ActiveRecord::Schema.define(version: 2021_11_01_151424) do
     t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "users_and_wiki_entries", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "wiki_entry_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_users_and_wiki_entries_on_user_id"
-    t.index ["wiki_entry_id"], name: "index_users_and_wiki_entries_on_wiki_entry_id"
   end
 
   create_table "wiki_entries", force: :cascade do |t|

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         has_and_belongs_to_many :favorite_entries, foreign_key: "user_id", class_name: "WikiEntry"
+         has_many :favoritings
+         has_many :favorite_entries, through: :favoritings, source: :wiki_entry
          has_many :search_terms
 end

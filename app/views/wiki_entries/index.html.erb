@@ -2,6 +2,7 @@ wikientries index
 
 
 <% if current_user%>
+        <%= "you have #{current_user.favorite_entries.length} favorites"%>
         <% unless WikiEntry.all.empty?%>
             <ul>
             <li>Entries count: <%= WikiEntry.all.size%> </li>
@@ -22,7 +23,8 @@ wikientries index
 
 
             <% WikiEntry.all.each do |entry|%>
-            <%=link_to entry.title, entry%> <br>
+            <%=link_to entry.title, entry%> 
+            <%= link_to 'Add to favorites', favoritings_create_path( :id => entry.id  )%>  <br>
            <% end %>
 
         <% else %>
