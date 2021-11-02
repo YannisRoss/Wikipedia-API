@@ -2,7 +2,21 @@ class WikiEntriesController < ApplicationController
 
     def welcome
         @wiki_entries = WikiEntry.all
-        @latest_entries = WikiEntry.all.last(10) unless WikiEntry.all.length < 10
+        @latest_entries = WikiEntry.all.last(10)  #unless WikiEntry.all.length < 10
+        if params[:sort_factor]
+            byebug
+            case params[:sort_factor]
+            when 'title'
+                @latest_entries = @latest_entries.sort_by{|entry| entry.title} 
+            when 'wordcount'
+                @latest_entries = @latest_entries.sort_by{|entry| entry.wordcount} 
+            when 'levenshtein'
+                @latest_entries = @latest_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)} 
+            when 'favorites'
+                @latest_entries = @latest_entries.sort_by{|entry| entry.favoritees.length}.reverse
+            else    
+            end
+        end
     end
 
     def index
