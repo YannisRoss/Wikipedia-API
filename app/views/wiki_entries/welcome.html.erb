@@ -90,3 +90,10 @@
     </ul>
 
 
+<h2>Most active users </h2>
+<% if current_user && current_user.admin? %>
+    <%@top_active_users.each do |user|%>
+    <%= user.email %>, activity factor <%= user.activity_factor %><br>
+    <% end %>
+
+<% end %>

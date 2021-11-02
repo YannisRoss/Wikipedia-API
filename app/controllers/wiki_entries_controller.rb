@@ -27,6 +27,10 @@ class WikiEntriesController < ApplicationController
             else    
             end
         end
+
+        @top_active_users = User.all.sort_by{|user| user.activity_factor}.last(5).reverse
+
+
     end
 
     def index
