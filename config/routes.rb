@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
 
 
-  root to: "wiki_entries#index"
+  root to: "wiki_entries#welcome"
 
   resources :wiki_entries
   resources :favoritings

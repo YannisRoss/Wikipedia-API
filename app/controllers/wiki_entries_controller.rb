@@ -1,5 +1,10 @@
 class WikiEntriesController < ApplicationController
 
+    def welcome
+        @wiki_entries = WikiEntry.all
+        @latest_entries = WikiEntry.all.last(10) unless WikiEntry.all.length < 10
+    end
+
     def index
         @wiki_entries = WikiEntry.all
     end

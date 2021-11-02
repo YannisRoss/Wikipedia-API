@@ -1,43 +1,18 @@
-wikientries index 
-
-
-<% if current_user%>
-        <%= "you have #{current_user.favorite_entries.length} favorites"%>
-        <% unless @wiki_entries.empty?%>
-            <ul>
-            <li>Entries count: <%= @wiki_entries.size%> </li>
-            <li>Search terms: <%= SearchTerm.all.size%> </li>   
-
-            <li>Entry with the biggest wordcount: <%= @wiki_entries.order(:wordcount).limit(1).first.title%></li>
-            
-            <li>Entry with the lowest wordcount: <%= @wiki_entries.order(wordcount: :desc).limit(1).first.title%></li>
-
-            
-            <li>Entry with the most words in title: <%= @wiki_entries.sort_by{|entry| entry.title}.first.title %></li>
-            <li>Entry with the lowest levenshtein distance according to its search term (levenshtein value and search term): <%= @wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.title %>, searched from <%=@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.search_term.body%> </li>
-             <li> Top 5 favorited entries
-                <ol> 
-                <% i = 0%>
-                <% while i < 5%>
-                    <% sorted_entries = @wiki_entries.sort_by{|entry| entry.favoritees.length}.reverse %>
-                        <li><%= sorted_entries[i].title %> Favorites:<%= sorted_entries[i].favoritees.length %></li> 
-                        <% i = i + 1%>
-                <% end %>
-
-            </ul>
+<h1>wikientries index </h1>
 
 
 
-
+    <h2> Wiki Entries </h2>
+        <% unless @wiki_entries.empty? %>
             <% @wiki_entries.each do |entry|%>
-            <%=link_to entry.title, entry%> 
-            <% if current_user.favorite_entries.include?(entry) %>
-                <%= link_to 'Remove from favorites', favoritings_destroy_path( :id => entry.id  )%>  <br>
+                <%=link_to entry.title, entry%> 
+                <% if current_user.favorite_entries.include?(entry) %>
+                    <%= link_to 'Remove from favorites', favoritings_destroy_path( :id => entry.id  )%>  <br>
 
-            <% else %>
-                <%= link_to 'Add to favorites', favoritings_create_path( :id => entry.id  )%>  <br>
+                <% else %>
+                    <%= link_to 'Add to favorites', favoritings_create_path( :id => entry.id  )%>  <br>
 
-            <%end%>
+                <%end%>
            <% end %>
 
         <% else %>
@@ -57,4 +32,5 @@ wikientries index
 
         <% end %>
 
-<% end %>
+
+

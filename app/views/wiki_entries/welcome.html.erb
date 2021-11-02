@@ -1,0 +1,61 @@
+<h1> Welcome to WikiEntries </h1>
+
+<% if current_user%>
+        <%= "you have #{current_user.favorite_entries.length} favorites"%>
+        <% unless @wiki_entries.empty?%>
+        <h2> Statistics: </h2>
+            <ul>
+            <li>Entries count: <%= @wiki_entries.size%> </li>
+            <li>Search terms: <%= SearchTerm.all.size%> </li>   
+
+            <li>Entry with the biggest wordcount: <%= @wiki_entries.order(:wordcount).limit(1).first.title%></li>
+            
+            <li>Entry with the lowest wordcount: <%= @wiki_entries.order(wordcount: :desc).limit(1).first.title%></li>
+
+            
+            <li>Entry with the most words in title: <%= @wiki_entries.sort_by{|entry| entry.title}.first.title %></li>
+            <li>Entry with the lowest levenshtein distance according to its search term (levenshtein value and search term): <%= @wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.title %>, searched from '<%=@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.search_term.body%>' </li>
+             <li> Top 5 favorited entries
+                <ol> 
+                <% i = 0%>
+                <% while i < 5%>
+                    <% sorted_entries = @wiki_entries.sort_by{|entry| entry.favoritees.length}.reverse %>
+                        <li><%= sorted_entries[i].title %> Favorites:<%= sorted_entries[i].favoritees.length %></li> 
+                        <% i = i + 1%>
+                <% end %>
+
+            </ul>
+
+        <% end %>
+<% end %>
+
+<h2>Wiki Entries </h2>
+<%= link_to 'Show all', wiki_entries_url %>
+<p>Sort by:
+<%= link_to 'Title', root_path %>
+ <% i = 0%>
+ <ul>
+    <% while i < 10%>
+        <% unless @latest_entries[i].nil?%>
+            <li><%= link_to @latest_entries[i].title, @latest_entries[i]%> </li>
+            <li>Page id: <%= @latest_entries[i].pageid%> </li>
+            <li><a href='<%= @latest_entries[i].fullurl%>' target='blank'>View on Wikipedia</a> </li>
+            <li>Search term: <%= @latest_entries[i].search_term.body%> </li>
+            
+                    <% if current_user.favorite_entries.include?(@latest_entries[i]) %>
+                        <%= link_to 'Remove from favorites', favoritings_destroy_path( :id => @latest_entries[i].id  )%>  <br>
+
+                    <% else %>
+                        <%= link_to 'Add to favorites', favoritings_create_path( :id => @latest_entries[i].id  )%>  <br>
+
+                    <%end%>
+            <% i = i + 1 %>
+            <br>
+        <% end %>
+    <%end%>
+</ul>
+
+   Show latest 10 entries line by line with sorting options (title, wordcount, lowest levenshtein, most favourited), asc/desc
+   For each entry: 'title', 'pageid', 'fullurl' (open wiki post in a new window), search term associated with it
+   Button to navigate to each entry - show path
+   Button to mark/unmark as favourite * (only visible to logged in user)
