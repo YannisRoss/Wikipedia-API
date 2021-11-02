@@ -4,7 +4,6 @@ class WikiEntriesController < ApplicationController
         @wiki_entries = WikiEntry.all
         @latest_entries = WikiEntry.all.last(10)  #unless WikiEntry.all.length < 10
         if params[:sort_factor]
-            byebug
             case params[:sort_factor]
             when 'title'
                 @latest_entries = @latest_entries.sort_by{|entry| entry.title} 
@@ -14,6 +13,17 @@ class WikiEntriesController < ApplicationController
                 @latest_entries = @latest_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)} 
             when 'favorites'
                 @latest_entries = @latest_entries.sort_by{|entry| entry.favoritees.length}.reverse
+            else    
+            end
+        end
+
+        @latest_terms = SearchTerm.all.last(10)
+        if params[:term_factor]
+            case params[:term_factor]
+            when 'alphabetically'
+                @latest_terms = @latest_terms.sort_by{|term| term.body} 
+            when 'entries'
+                @latest_terms = @latest_terms.sort_by{|term| term.wiki_entries.length} 
             else    
             end
         end

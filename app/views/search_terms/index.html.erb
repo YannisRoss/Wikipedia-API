@@ -1,0 +1,13 @@
+<h1> SearchTerm index </h1>
+
+<h2> List of terms </h2>
+    <ol>
+    <% @search_terms.each do |term|%>
+        <li> <%= term.body%> 
+            <% if current_user.admin? || term.user == current_user%>
+            <p> by <%= term.user%> </p>
+            <% end %>
+            </li>
+            <br>
+    <% end %>
+    </ol>

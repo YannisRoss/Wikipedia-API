@@ -2,6 +2,10 @@ class SearchTermsController < ApplicationController
     require './lib/assets/API_methods.rb'
     include APIMethods
 
+    def index
+        @search_terms = SearchTerm.all
+    end
+
     def create
         
         @search_term = SearchTerm.new(search_term_params)
