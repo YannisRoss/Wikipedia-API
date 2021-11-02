@@ -19,11 +19,11 @@ wikientries index
                 <ol> 
                 <% i = 0%>
                 <% while i < 5%>
-                    <% sorted_entries = @wiki_entries.sort_by{|entry| entry.favoritees.length} %>
+                    <% sorted_entries = @wiki_entries.sort_by{|entry| entry.favoritees.length}.reverse %>
                         <li><%= sorted_entries[i].title %> Favorites:<%= sorted_entries[i].favoritees.length %></li> 
                         <% i = i + 1%>
                 <% end %>
-             
+                <li><%= sorted_entries.last.title %> Favorites:<%= sorted_entries.last.favoritees.length %></li> 
 
             </ul>
 
