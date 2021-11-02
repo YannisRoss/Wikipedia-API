@@ -22,9 +22,12 @@ class WikiEntriesController < ApplicationController
           end
     end
 
+
     
     def wiki_entry_params
         params.permit(:title, :pageid, :wordcount, :snippet, :fullurl)
             
     end
+
+ 
 end

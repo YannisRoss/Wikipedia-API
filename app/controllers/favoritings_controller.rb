@@ -1,5 +1,8 @@
 class FavoritingsController < ApplicationController
 
+  def index
+    @favoritings = Favoriting.all
+  end
   def create
     @favoriting = Favoriting.new(user_id: current_user.id, wiki_entry_id: params[:id])
         
