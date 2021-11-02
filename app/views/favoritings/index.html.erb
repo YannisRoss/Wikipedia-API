@@ -1,0 +1,9 @@
+<h1>Your favorited entries</h1>
+<ul>
+<% current_user.favorite_entries.each do |entry|%>
+    <li><%= link_to entry.title, entry%></li>
+
+
+    <% end %>
+
+    </ul>

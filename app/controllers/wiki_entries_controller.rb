@@ -35,6 +35,18 @@ class WikiEntriesController < ApplicationController
 
     def index
         @wiki_entries = WikiEntry.all
+
+        if params[:offset]
+            case params[:offset]
+            when '10'
+                @wiki_entries = @wiki_entries.first(10) 
+            when '50'
+                @wiki_entries = @wiki_entries.first(50) 
+            when '100'
+                @wiki_entries = @wiki_entries.first(100)
+            else    
+            end
+        end
     end
 
     def show

@@ -1,8 +1,24 @@
 <h1>wikientries index </h1>
-
-
+ 
+   -> Show entries line by line with the same sorting options as in root page and paging options 10,50,100,All
+   -> Input for search term and 'Import' button (fixed on top of page)
+    -> when you click the 'Import' button:
+      -> if input empty show alert
+      -> if term exists
+        -> fetch the next batch **
+      -> if not exists
+        -> fetch the first batch ** of search term (10 items) and save them to the database
+        -> save search term as well *
 
     <h2> Wiki Entries </h2>
+
+        View: <%= link_to '10', wiki_entries_path(offset: '10')%> 
+        <%= link_to '50', wiki_entries_path(offset: '50') %> 
+        <%= link_to '100', wiki_entries_path(offset: '100')%>  
+        <%= link_to 'All', wiki_entries_path(offset: 'all')%>   
+
+        <br> <br> 
+  
         <% unless @wiki_entries.empty? %>
             <% @wiki_entries.each do |entry|%>
                 <%=link_to entry.title, entry%> 
@@ -20,17 +36,6 @@
         <% end %>
 
 
-
-        <% if current_user.admin? %>
-
-            <p>Search terms: <%= SearchTerm.all.size%>   </p>
-            <% SearchTerm.all.each do |term|%>
-            <%= term.body%>
-            , created by <%= term.user.email%>
-            <% end %>
-
-
-        <% end %>
 
 
 

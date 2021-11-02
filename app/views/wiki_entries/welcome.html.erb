@@ -1,7 +1,7 @@
 <h1> Welcome to WikiEntries </h1>
 
 <% if current_user%>
-        <%= "you have #{current_user.favorite_entries.length} favorites"%>
+        <%= "you have #{current_user.favorite_entries.length} favorite entries"%> <%= link_to 'View', favoritings_path%>
         <% unless @wiki_entries.empty?%>
         <h2> Statistics: </h2>
             <ul>
