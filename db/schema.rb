@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_01_151424) do
+ActiveRecord::Schema.define(version: 2021_11_02_100817) do
 
-  create_table "favoritings", id: false, force: :cascade do |t|
+  create_table "favoritings", force: :cascade do |t|
     t.integer "user_id"
     t.integer "wiki_entry_id"
     t.datetime "created_at", precision: 6, null: false

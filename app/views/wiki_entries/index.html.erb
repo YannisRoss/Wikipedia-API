@@ -24,7 +24,13 @@ wikientries index
 
             <% WikiEntry.all.each do |entry|%>
             <%=link_to entry.title, entry%> 
-            <%= link_to 'Add to favorites', favoritings_create_path( :id => entry.id  )%>  <br>
+            <% if current_user.favorite_entries.include?(entry) %>
+                <%= link_to 'Remove from favorites', favoritings_destroy_path( :id => entry.id  )%>  <br>
+
+            <% else %>
+                <%= link_to 'Add to favorites', favoritings_create_path( :id => entry.id  )%>  <br>
+
+            <%end%>
            <% end %>
 
         <% else %>
