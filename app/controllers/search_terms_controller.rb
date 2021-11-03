@@ -22,15 +22,16 @@ class SearchTermsController < ApplicationController
                 search(@search_term)
               format.html { redirect_to root_path, notice: "search_term was successfully created." }
               format.json { render :show, status: :created, location: @search_term }
-              ActionCable.server.broadcast 'room', {
-                    entries: @wiki_entries, 
-                    terms: SearchTerm.all, 
-                    wordcount_max_min: [@wiki_entries.order(:wordcount).limit(1).first.title, @wiki_entries.order(wordcount: :desc).limit(1).first.title],
-                    biggest_title: @wiki_entries.sort_by{|entry| entry.title}.first.title,
-                    lowest_levenshtein: @wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.title,
-                    lowest_levenshtein_term: @wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.search_term.body,
+              StatisticsBroadcasterJob.perform_now
+            #   ActionCable.server.broadcast 'room', {
+            #         entries: @wiki_entries, 
+            #         terms: SearchTerm.all, 
+            #         wordcount_max_min: [@wiki_entries.order(:wordcount).limit(1).first.title, @wiki_entries.order(wordcount: :desc).limit(1).first.title],
+            #         biggest_title: @wiki_entries.sort_by{|entry| entry.title}.first.title,
+            #         lowest_levenshtein: @wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.title,
+            #         lowest_levenshtein_term: @wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.search_term.body,
                 
-                }
+            #     }
 
             else
                 format.html { redirect_to root_path,  alert: "search_term failed, #{@search_term.errors.full_messages.first}" , status: :unprocessable_entity }
