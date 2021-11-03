@@ -10,4 +10,9 @@ RSpec.describe SearchTerm, type: :model do
     expect(empty_string.valid?).to be(false)
   end
 
+  it "cannot be assigned to a non-existing user" do
+    term = SearchTerm.new(body: 'body', user_id: 1)
+
+    expect(term.valid?).to be(false)
+  end
 end 
