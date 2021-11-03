@@ -6,7 +6,7 @@ class SearchTerm < ApplicationRecord
     validates :body, length: { minimum:1 }
     
     belongs_to :user
-    has_many :wiki_entries
+    has_many :wiki_entries, :dependent => :destroy
 
 
 end

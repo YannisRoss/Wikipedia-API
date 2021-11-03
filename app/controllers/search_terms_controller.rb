@@ -6,6 +6,16 @@ class SearchTermsController < ApplicationController
         @search_terms = SearchTerm.all
     end
 
+    def destroy
+        @search_term = SearchTerm.find(params[:id])
+        if @search_term.destroy
+          redirect_to root_path, notice: "search_term was successfully destroyed." 
+        else
+          redirect_to root_path,  alert: "search_term destroy failed, #{search_term.errors.full_messages.first}"
+        end
+      end
+
+
     def create
         @wiki_entries = WikiEntry.all
         @search_term = SearchTerm.new(search_term_params)
