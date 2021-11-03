@@ -17,10 +17,10 @@
 
         <div>Hello, <%= current_user.email %> </div>
         <%= button_to 'Sign out', destroy_user_session_path, method: :delete%>
-
+        <br>
         <%= form_with model: SearchTerm.new, url: search_terms_path do |form| %>
           <%= form.hidden_field :user_id, value: current_user.id %>
-          <%= form.text_field :body %>
+          <%= form.text_field :body, :required => true%>
           
           <%= form.submit "Import" %>
         <% end %>

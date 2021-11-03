@@ -6,7 +6,7 @@ class SearchTerm < ApplicationRecord
     #after_commit :generate_entries
 
 
-    validates :body, uniqueness: true
+    validates :body, length: { minimum:1 }
     
     belongs_to :user
     has_many :wiki_entries
