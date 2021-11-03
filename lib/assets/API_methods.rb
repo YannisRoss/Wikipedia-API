@@ -24,8 +24,9 @@ module APIMethods
             else
                 
 
-                      unless WikiEntry.any? {|entry| entry.pageid == item['pageid']}
+                      unless WikiEntry.any? {|entry| entry.pageid == item['pageid'].to_i}
                       #in case the articles undergo changes during the search, or any other duplication incident
+                        byebug
                         retrieved_articles.push(WikiEntry.create(search_term_id: search_term.id,title: item['title'],pageid: item['pageid'].to_i, wordcount: item['wordcount'],snippet: item['snippet'],fullurl: fullurl))
 
                       end
