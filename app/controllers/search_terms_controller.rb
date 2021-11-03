@@ -10,6 +10,13 @@ class SearchTermsController < ApplicationController
         @wiki_entries = WikiEntry.all
         @search_term = SearchTerm.new(search_term_params)
         
+        if SearchTerm.any? {|term| term.body == @search_term.body}
+            search(SearchTerm.where(:body => @search_term.body)[0])
+            respond_to do |format|
+                format.html { redirect_to root_path, notice: "search complete." }
+            end
+            return
+        end
         respond_to do |format|
             if @search_term.save
                 search(@search_term)

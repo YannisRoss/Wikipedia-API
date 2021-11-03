@@ -5,7 +5,7 @@ module APIMethods
   
     def search(search_term, sroffset = 10, retrieved_articles = [])
     
-      puts "Searching for #{search_term.body}" unless retrieved_articles.length > 0
+      puts "Searching for #{search_term.body}: retrieved_articles: #{retrieved_articles.length}, sroffset #{sroffset}"
 
 
       uri = URI("https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=#{search_term.body}&format=json&sroffset=#{sroffset}")
@@ -19,31 +19,30 @@ module APIMethods
         extra_info = JSON.parse(individual_response.body)
 
         fullurl = extra_info['query']['pages'][item['pageid'].to_s]['fullurl']
-        if search_complete?(retrieved_articles)
-          return retrieved_articles
-        else
-                unless retrieved_articles.empty?
+            if search_complete?(retrieved_articles)
+              return retrieved_articles
+            else
+                
 
                       unless WikiEntry.any? {|entry| entry.pageid == item['pageid']}
-      #in case the articles undergo changes during the search, or any other duplication incident
+                      #in case the articles undergo changes during the search, or any other duplication incident
                         retrieved_articles.push(WikiEntry.create(search_term_id: search_term.id,title: item['title'],pageid: item['pageid'].to_i, wordcount: item['wordcount'],snippet: item['snippet'],fullurl: fullurl))
 
                       end
+                
+                
+                if retrieved_articles.length < 50 
+                  #search(search_term, sroffset+10, retrieved_articles)
+                  
                 else
-                  retrieved_articles.push(WikiEntry.create(search_term_id: search_term.id, title: item['title'],pageid: item['pageid'].to_i, wordcount: item['wordcount'],snippet: item['snippet'],fullurl: fullurl))
+                  #search(search_term, sroffset+(10-retrieved_articles.length), retrieved_articles)
                 end
-
-                if retrieved_articles.length < 40
-                  search(search_term, sroffset+10, retrieved_articles)
-                else
-                  search(search_term, sroffset+(50-retrieved_articles.length), retrieved_articles)
-                end
-          end
+            end
       end
     end
 
     def search_complete?(articles)
-      if articles.length >= 5
+      if articles.length >= 10
         true
       else
         false

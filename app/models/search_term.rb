@@ -3,16 +3,10 @@ class SearchTerm < ApplicationRecord
     include APIMethods
 
 
-    #after_commit :generate_entries
-
-
     validates :body, length: { minimum:1 }
     
     belongs_to :user
     has_many :wiki_entries
 
-    private
-    def generate_entries
-        retrieved_entries = search(self.body)
-    end
+
 end
