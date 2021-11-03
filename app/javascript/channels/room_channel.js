@@ -12,10 +12,26 @@ const roomChannel = consumer.subscriptions.create("RoomChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
-    console.log('data received:' + data)
-  }
+    console.log(data)
+    let statisticsDiv = document.getElementById("statistics-div")
+    statisticsDiv.innerHTML =    `
+    <ul>
+    <li>Entries count:  ${data['entries'].length} </li>
+    <li>Search terms:  ${data['terms'].length} </li>   
+
+    <li>Entry with the biggest wordcount:  ${data['wordcount_max_min'][0]}</li>
+    
+    <li>Entry with the lowest wordcount:  ${data['wordcount_max_min'][1]}</li>
+
+    
+    <li>Entry with the most words in title:  ${data['biggest_title']} </li>
+    <li>Entry with the lowest levenshtein distance according to its search term (levenshtein value and search term):  ${data['lowest_levenshtein']} , searched from ${data['lowest_levenshtein_term']} </li>
+
+
+</ul>
+  `}
 },
 );
 
-roomChannel.send({ sent_by: "Paul", body: "This is a cool chat app." })
 console.log('room_channel')
+
