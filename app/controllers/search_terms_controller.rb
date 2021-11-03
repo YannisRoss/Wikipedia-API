@@ -15,6 +15,8 @@ class SearchTermsController < ApplicationController
                 search(@search_term)
               format.html { redirect_to root_path, notice: "search_term was successfully created." }
               format.json { render :show, status: :created, location: @search_term }
+              ActionCable.server.broadcast 'room', {entries_and_terms: [WikiEntry.all, SearchTerm.all]}
+
             else
                 format.html { redirect_to root_path,  alert: "search_term failed, #{@search_term.errors.full_messages.first}" , status: :unprocessable_entity }
                 format.json { render json: @search_term.errors, status: :unprocessable_entity }

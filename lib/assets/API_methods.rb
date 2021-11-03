@@ -27,7 +27,7 @@ module APIMethods
                       unless WikiEntry.any? {|entry| entry.pageid == item['pageid']}
       #in case the articles undergo changes during the search, or any other duplication incident
                         retrieved_articles.push(WikiEntry.create(search_term_id: search_term.id,title: item['title'],pageid: item['pageid'].to_i, wordcount: item['wordcount'],snippet: item['snippet'],fullurl: fullurl))
-                        
+
                       end
                 else
                   retrieved_articles.push(WikiEntry.create(search_term_id: search_term.id, title: item['title'],pageid: item['pageid'].to_i, wordcount: item['wordcount'],snippet: item['snippet'],fullurl: fullurl))
@@ -43,7 +43,7 @@ module APIMethods
     end
 
     def search_complete?(articles)
-      if articles.length >= 50
+      if articles.length >= 5
         true
       else
         false

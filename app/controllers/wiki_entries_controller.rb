@@ -65,6 +65,8 @@ class WikiEntriesController < ApplicationController
                 format.json { render json: @wiki_entry.errors, status: :unprocessable_entity }
             end
           end
+
+
     end
 
 
