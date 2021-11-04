@@ -10,6 +10,28 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+
  *= require_tree .
  *= require_self
+ 
+
+    
  */
+
+ html,body { margin: 0px; } 
+
+
+ #navbar {
+    position: fixed;
+    padding: 10px;
+    background-color: rgb(199, 199, 199);
+    width: 100vw;
+    height: 10vh;
+ }
+
+
+ #user-panel {
+     position: absolute;
+     top: 0;
+     right: 5vw;
+ }

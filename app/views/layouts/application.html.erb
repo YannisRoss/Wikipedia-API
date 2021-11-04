@@ -13,21 +13,27 @@
   <body>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <% if current_user%>
+      <nav id='navbar'>
 
-        <div>Hello, <%= current_user.email %> </div>
-        <%= button_to 'Sign out', destroy_user_session_path, method: :delete%>
-        <br>
-        <%= form_with model: SearchTerm.new, url: search_terms_path do |form| %>
-          <%= form.hidden_field :user_id, value: current_user.id %>
-          <%= form.text_field :body, :required => true%>
-          
-          <%= form.submit "Import" %>
+        <% if current_user%>
+          <div id='user-panel'>Hello, <%= current_user.email %>  <br>
+          <%= button_to 'Sign out', destroy_user_session_path, method: :delete%>
+          </div>
+          <br> <br>
+          <%= form_with model: SearchTerm.new, url: search_terms_path do |form| %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.label :body, 'Input your search term' %> <br>
+            <%= form.text_field :body, :required => true%>
+            
+            <%= form.submit "Import" %>
+          <% end %>
+        <% else %>
+          <%= link_to 'Sign up', new_user_registration_url%>
+          <%= link_to 'Sign in', new_user_session_url%>
         <% end %>
-      <% else %>
-        <%= link_to 'Sign up', new_user_registration_url%>
-        <%= link_to 'Sign in', new_user_session_url%>
-      <% end %>
+      </nav>
+
     <%= yield %>
+      
   </body>
 </html>
