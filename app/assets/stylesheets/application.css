@@ -29,7 +29,13 @@
     height: 10vh;
  }
 
+#container {
+    display: flex;
+}
 
+#page-contents {
+    margin-top: 10vh;
+}
  #user-panel {
      position: absolute;
      top: 0;
