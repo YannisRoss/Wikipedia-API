@@ -1,5 +1,25 @@
 <h1> SearchTerm index </h1>
 
+<% terms_with_entries = []%>
+<%= react_component("SearchTermIndex", { 
+    
+    greeting: " index (built with React)
+    -> List with search terms sorted by creation date desc - paging options 10,50,100,All
+      -> line by line:
+        (term, number of WikiEntries, number of batches)
+        -> display an indicator that search term created by current logged in user
+        -> delete button (warning with an alert) (only when term owned by logged in user)
+        -> edit button (only when term owned by logged in user)
+        -> button which fetches next batch (only when term owned by logged in user) **
+          -> needs to keep track of how many batches we have fetched so far
+          -> needs to update number of WikiEntries and number of batches on the fly",
+    searchTerms: @search_terms_with_entries,
+    currentUser: current_user
+    
+          
+          
+          }) %>
+
 <h2> List of terms </h2>
     <ol>
     <% @search_terms.each do |term|%>

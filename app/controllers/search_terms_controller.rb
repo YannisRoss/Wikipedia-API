@@ -4,6 +4,16 @@ class SearchTermsController < ApplicationController
 
     def index
         @search_terms = SearchTerm.all
+        @search_terms_with_entries = []
+        @search_terms.each do |term| 
+          @search_terms_with_entries.push({ 
+            id: term.id,
+            creator: term.user,
+            body: term.body,
+            entries: term.wiki_entries
+          })
+
+        end
     end
 
     def destroy
