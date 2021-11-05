@@ -18,13 +18,26 @@ class SearchTermIndex extends React.Component {
         
         <ul id='terms-list'>
         {this.state.searchTerms.map((term, index) => {
-
+          let hasEditRights = false;
           let creatorData = ''
-          if (term.creator.id == this.props.currentUser.id) {creatorData = 'Created by you!'}
+          if (term.creator.id == this.props.currentUser.id || this.props.currentUser.id == this.props.admin.id) {
+            hasEditRights = true
+            creatorData = 'Created by you!'}
           return ( 
           <div key={index}>        
-            <li >{index+1}. {term.body} ({term.entries.length + " entries"}) {creatorData}</li> 
-            <button onClick={() => this.deleteTerm(term.id, index)}>Delete</button>
+            <li >{index+1}. {term.body} ({term.entries.length + " entries"}) </li> 
+            {hasEditRights ? (
+              <div>
+                <button onClick={() => this.deleteTerm(term.id, index)}>Delete</button>
+                <a href={`http://localhost:3000/search_terms/${term.id}/edit`}>Edit</a>
+                <a href={`http://localhost:3000/search_terms/${term.id}`}>Show</a>
+
+              </div>
+            ) : (
+              <a href={`http://localhost:3000/search_terms/${term.id}`}>Show</a>
+
+            )}
+
           </div>
 
           )

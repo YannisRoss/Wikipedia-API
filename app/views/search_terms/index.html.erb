@@ -14,20 +14,9 @@
           -> needs to keep track of how many batches we have fetched so far
           -> needs to update number of WikiEntries and number of batches on the fly",
     searchTerms: @search_terms_with_entries,
-    currentUser: current_user
-    
+    currentUser: current_user,
+    admin: User.where(admin: true)
           
           
           }) %>
 
-<h2> List of terms </h2>
-    <ol>
-    <% @search_terms.each do |term|%>
-        <li> <%= term.body%> 
-            <% if current_user.admin? || term.user == current_user%>
-            <p> by <%= term.user%> </p>
-            <% end %>
-            </li>
-            <br>
-    <% end %>
-    </ol>
