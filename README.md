@@ -10,11 +10,17 @@ sudo apt install redis-server
 ```
 
 Once you do that, clone the repo and run:
-```bundle install```
+```
+bundle install
+```
 to install the necessary gems. Once that's done, run:
-```bundle exec sidekiq start```
+```
+bundle exec sidekiq start
+```
 and, on another terminal window, run:
-```rails s```
+```
+rails s
+```
 The second terminal window should show the URL your server is listening on. Visit it to see the project.
 
 
