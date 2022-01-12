@@ -7,7 +7,7 @@ wordcount
 <%= @wiki_entry.fullurl%><br>
 Search term: <%= @wiki_entry.search_term.body%>
 
-<% if @wiki_entry.search_term.user == current_user || current_user.admin?%>
+<% if current_user && (@wiki_entry.search_term.user == current_user || current_user.admin?)%>
     <br>
     Created by <%= @wiki_entry.search_term.user.email %>
 
