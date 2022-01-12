@@ -1,11 +1,18 @@
 <h2><%= @wiki_entry.title%><br></h2>
-Pageid
-<%= @wiki_entry.pageid%><br>
-wordcount
-<%= @wiki_entry.wordcount%><br>
-<%= @wiki_entry.snippet%>...<br>
-<%= @wiki_entry.fullurl%><br>
-Search term: <%= @wiki_entry.search_term.body%>
+
+    <h3>Page id</h3> 
+        <%= @wiki_entry.pageid%><br>
+
+    <h3>Wordcount</h3> 
+        <%= @wiki_entry.wordcount%><br>
+
+    <h3>Snippet</h3>
+        <%= @wiki_entry.snippet%>... <a href='<%= @wiki_entry.fullurl%>' target='blank'>View full article on Wikipedia</a>
+
+    <h3>Full URL</h3>
+        <a href='<%= @wiki_entry.fullurl%>' target='blank'><%= @wiki_entry.fullurl%></a><br>
+
+    <h3>Search term</h3> "<%= @wiki_entry.search_term.body%>" <br>
 
 <% if current_user && (@wiki_entry.search_term.user == current_user || current_user.admin?)%>
     <br>
