@@ -52,9 +52,17 @@ class WikiEntriesController < ApplicationController
     def show
         @wiki_entry = WikiEntry.find(params[:id])
 
-        @sanitized_snippet = ActionView::Base.full_sanitizer.sanitize(@wiki_entry.snippet)
+        @wiki_entry = sanitize_snippet(@wiki_entry)
         
     end
+
+    def sanitize_snippet(wiki_entry)
+
+        wiki_entry.snippet = ActionView::Base.full_sanitizer.sanitize(wiki_entry.snippet)
+
+        wiki_entry
+    end
+
     def create(title = 'error', pageid = 0, wordcount = 0, snippet = 'error', fullurl ='error')
         
         @wiki_entry = WikiEntry.new(wiki_entry_params)
