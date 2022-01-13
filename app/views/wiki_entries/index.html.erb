@@ -1,4 +1,4 @@
-<h1>wikientries index </h1>
+<h1>Wiki Entries index </h1>
  
 
     <h2> Wiki Entries </h2>
@@ -13,13 +13,16 @@
         <% unless @wiki_entries.empty? %>
             <% @wiki_entries.each do |entry|%>
                 <%=link_to entry.title, entry%> 
-                <% if current_user.favorite_entries.include?(entry) %>
-                    <%= link_to 'Remove from favorites', favoritings_destroy_path( :id => entry.id  )%>  <br>
+                <% if current_user %>
+                    <% if current_user.favorite_entries.include?(entry) %>
+                        <%= link_to 'Remove from favorites', favoritings_destroy_path( :id => entry.id  )%>  
 
-                <% else %>
-                    <%= link_to 'Add to favorites', favoritings_create_path( :id => entry.id  )%>  <br>
+                    <% else %>
+                        <%= link_to 'Add to favorites', favoritings_create_path( :id => entry.id  )%>  
 
-                <%end%>
+                    <%end%>
+                <% end %>
+                <br>
            <% end %>
 
         <% else %>
