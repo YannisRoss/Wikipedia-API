@@ -31,8 +31,11 @@
             <%= form.submit "Import" %>
           <% end %>
         <% else %>
+        <div id='user-panel'>
           <%= link_to 'Sign up', new_user_registration_url%>
           <%= link_to 'Sign in', new_user_session_url%>
+          <%= link_to 'Home', root_path%>
+        </div>
         <% end %>
 
       </nav>
