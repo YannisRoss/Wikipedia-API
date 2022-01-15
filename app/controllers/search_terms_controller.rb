@@ -19,7 +19,13 @@ class SearchTermsController < ApplicationController
     def show
 
       @search_term = SearchTerm.find(params[:id])
-
+      @search_term_with_entries = []
+      @search_term_with_entries.push({ 
+        id: @search_term.id,
+        creator: @search_term.user,
+        body: @search_term.body,
+        entries: @search_term.wiki_entries
+      })
     end
     def destroy
         @search_term = SearchTerm.find(params[:id])

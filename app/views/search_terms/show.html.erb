@@ -1,9 +1,13 @@
 
 
-<% terms_with_entries = []%>
 <%= react_component("SearchTermShow", { 
     
     searchTerm: @search_term,
+    creator: @search_term.user,
+    entries: @search_term.wiki_entries,
+    
+    
+
     currentUser: current_user,
     admin: User.where(admin: true)
           

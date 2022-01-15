@@ -14,11 +14,11 @@ class SearchTermShow extends React.Component {
 
 
   render () {
-    const {searchTerm,currentUser} = this.props
+    const {searchTerm,creator, entries} = this.props
 
     return (
       <React.Fragment>
-        {console.log(searchTerm)}
+        {console.log(this.props)}
         {}
         <h1>{searchTerm.body}</h1>
 
@@ -41,8 +41,16 @@ class SearchTermShow extends React.Component {
                 )}
           </li>
           
+          {this.props.currentUser && (creator.id == this.props.currentUser.id || this.props.currentUser.id == this.props.admin.id) ? (
+            <li>Original searcher:
+              <p> {creator.email}</p>
+            </li>)  : (
+            <p></p>
+              
+            )}
+          
 
-
+            
 
 
         </ul>
