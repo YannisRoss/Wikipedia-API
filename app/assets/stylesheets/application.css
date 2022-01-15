@@ -18,13 +18,20 @@
     
  */
 
+
+
  html,body { margin: 0px; } 
 
 
  #navbar {
+    box-sizing: border-box;
+    background-color: #24252A;
+    color: #edf0f1;
+
+    text-decoration: none;
+    
     position: fixed;
     padding: 10px;
-    background-color: rgb(199, 199, 199);
     width: 100vw;
     height: 10vh;
  }
