@@ -15,12 +15,11 @@ class SearchTermIndex extends React.Component {
     return (
       <React.Fragment>
         {console.log(this.props)}
-        
         <ul id='terms-list'>
         {this.state.searchTerms.map((term, index) => {
           let hasEditRights = false;
           let creatorData = ''
-          if (term.creator.id == this.props.currentUser.id || this.props.currentUser.id == this.props.admin.id) {
+          if (this.props.currentUser && (term.creator.id == this.props.currentUser.id || this.props.currentUser.id == this.props.admin.id)) {
             hasEditRights = true
             creatorData = 'Created by you!'}
           return ( 
@@ -73,7 +72,6 @@ deleteTerm(id,index) {
 } 
 
 SearchTermIndex.propTypes = {
-  greeting: PropTypes.string,
   searchTerms: PropTypes.array
 };
 export default SearchTermIndex
