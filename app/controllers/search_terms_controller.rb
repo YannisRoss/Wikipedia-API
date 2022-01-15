@@ -16,6 +16,11 @@ class SearchTermsController < ApplicationController
         end
     end
 
+    def show
+
+      @search_term = SearchTerm.find(params[:id])
+
+    end
     def destroy
         @search_term = SearchTerm.find(params[:id])
         if @search_term.destroy

@@ -1,10 +1,9 @@
-<h1> SearchTerm show</h1>
 
 
 <% terms_with_entries = []%>
 <%= react_component("SearchTermShow", { 
     
-    searchTerms: @search_terms_with_entries,
+    searchTerm: @search_term,
     currentUser: current_user,
     admin: User.where(admin: true)
           

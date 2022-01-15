@@ -31,14 +31,14 @@ class SearchTermIndex extends React.Component {
                 <div className="terms-functions-div">
                   <button onClick={() => this.deleteTerm(term.id, index)}>Delete</button> 
                   
-                  <a href={`http://localhost:3000/search_terms/${term.id}/edit`}><button type="button">Edit</button></a> 
+                  <a href={`/search_terms/${term.id}/edit`}><button type="button">Edit</button></a> 
 
-                  <a href={`http://localhost:3000/search_terms/${term.id}`}><button type="button">Show</button></a> 
+                  <a href={`/search_terms/${term.id}`}><button type="button">Show</button></a> 
 
                 </div>
               ) : (
                 <div className="terms-functions-div">
-                  <a href={`http://localhost:3000/search_terms/${term.id}`}><button type="button">Show</button></a> 
+                  <a href={`/search_terms/${term.id}`}><button type="button">Show</button></a> 
                 </div>
               )}
 
