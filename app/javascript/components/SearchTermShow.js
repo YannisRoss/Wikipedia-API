@@ -41,19 +41,21 @@ class SearchTermShow extends React.Component {
                 )}
           </li>
           <li>Number of entries:
-            <p>{entries.length}
-              <ul>
-                {entries.map((entry, index) => {
+            <div>
+              <p>{entries.length}</p>
+                <ul>
+                  {entries.map((entry, index) => {
 
-                  return(
-                    <div key={index}>
-                      <li>{entry.title}</li>
-                    </div>
-                  )
-                  
-                })}
-              </ul>
-            </p>
+                    return(
+                      <div key={index}>
+                        <li>{entry.title}</li>
+                      </div>
+                    )
+                    
+                  })}
+                </ul>
+              
+            </div>
           </li>
 
           {this.props.currentUser && (creator.id == this.props.currentUser.id || this.props.currentUser.id == this.props.admin.id) ? (
