@@ -23,17 +23,22 @@
             </ul>
         </div>
                 
-                <div> Top 5 favorited entries
-                    <ol> 
-                    <% i = 0%>
-                    <% while i < 5%>
+                <% unless Favoriting.all.length <= 0%>
+
+                    <div> Top favorited entries
                         <% sorted_entries = @wiki_entries.sort_by{|entry| entry.favoritees.length}.reverse %>
-                            <li><%= sorted_entries[i].title %> Favorites:<%= sorted_entries[i].favoritees.length %></li> 
-                            <% i = i + 1%>
-                    <% end %>
 
-                </div>
-
+                        <ol> 
+                            <% i = 0%>
+                            <% while i < 5%>
+                                    <% unless sorted_entries[i].favoritees.length == 0 %>
+                                        <li><%= sorted_entries[i].title %> Favorites:<%= sorted_entries[i].favoritees.length %></li>
+                                    <% end %>
+                                    <% i = i + 1%>
+                            <% end %>
+                        <ol>
+                    </div>
+                <% end %>
         
 
         <% end %>
