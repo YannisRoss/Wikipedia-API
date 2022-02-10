@@ -21,15 +21,11 @@ To run the necessary migrations, run
 rails db:migrate
 ```
 
-Once that's done, run:
-```
-bundle exec sidekiq start
-```
-and, on another terminal window, run:
+To launch the site, open a terminal window and run:
 ```
 rails s
 ```
-The second terminal window should show the URL your server is listening on. Visit it to see the project.
+The terminal window should show the URL your server is listening on, which by default would be http://127.0.0.1:3000/. Visit it to see the project.
 
 
 
