@@ -15,9 +15,13 @@
 
                 
                 <li>Entry with the most words in title: <%= @wiki_entries.sort_by{|entry| entry.title}.first.title %></li>
-                <li>Entry with the lowest levenshtein distance according to its search term (levenshtein value and search term): <%= @wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.title %>, searched from '<%=@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.search_term.body%>' </li>
-                </ul>
-                </div>
+                <li>Entry with the lowest levenshtein distance according to its search term (levenshtein value and search term): 
+                    <%= link_to @wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.title, 
+                    wiki_entry_path(@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first) %>, 
+                    searched from '<%=@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.search_term.body%>' 
+                </li>
+            </ul>
+        </div>
                 
                 <div> Top 5 favorited entries
                     <ol> 
