@@ -27,5 +27,6 @@ rails s
 ```
 The terminal window should show the URL your server is listening on, which by default would be http://127.0.0.1:3000/. Visit it to see the project.
 
+## The welcome page
 
-
+To use the project, create an account on the top right. Once you create an account, you should be able to import pages from wikipedia through the Import field on the top left.
