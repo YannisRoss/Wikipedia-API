@@ -12,8 +12,9 @@ sudo apt install redis-server
 Once you do that, clone the repo, cd into its directory and run:
 ```
 bundle install
+yarn install
 ```
-to install the necessary gems. 
+to install the necessary gems and dependencies. 
 
 To run the necessary migrations, run 
 ```
