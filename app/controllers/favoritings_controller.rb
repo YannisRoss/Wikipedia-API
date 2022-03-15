@@ -7,7 +7,7 @@ class FavoritingsController < ApplicationController
     @favoriting = Favoriting.new(user_id: current_user.id, wiki_entry_id: params[:id])
 
     if @favoriting.save
-      redirect_back fallback_location: root_path, notice: 'favoriting was successfully created.' 
+      redirect_back fallback_location: root_path, notice: 'favoriting was successfully created.'
     else
       redirect_back fallback_location: root_path, alert: "favoriting failed, #{@favoriting.errors.full_messages.first}"
     end
@@ -18,7 +18,8 @@ class FavoritingsController < ApplicationController
     if @favoriting.destroy
       redirect_back fallback_location: root_path, notice: 'favoriting was successfully destroyed.'
     else
-      redirect_back fallback_location: root_path, alert: "favoriting destroy failed, #{favoriting.errors.full_messages.first}"
+      redirect_back fallback_location: root_path,
+                    alert: "favoriting destroy failed, #{favoriting.errors.full_messages.first}"
     end
   end
 end
