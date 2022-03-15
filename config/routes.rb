@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  get 'favoritings/create'
-  get 'favoritings/destroy'
-  get 'search_terms/destroy'
 
-  devise_for :users
+    get 'favoritings/create'
+    get 'favoritings/destroy'
+    get 'search_terms/destroy'
 
-  root to: 'wiki_entries#welcome'
+    devise_for :users
 
-  resources :wiki_entries
-  resources :favoritings
+    root to: 'wiki_entries#welcome'
+  scope "/:locale" do
+    resources :wiki_entries
+    resources :favoritings
 
-  resources :search_terms
+    resources :search_terms
+  end
 end
