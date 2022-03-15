@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     devise_for :users
 
     root to: 'wiki_entries#welcome'
-  scope "/:locale" do
+  scope "(:locale)" do
     resources :wiki_entries
     resources :favoritings
 
