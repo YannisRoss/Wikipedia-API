@@ -30,7 +30,6 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   welcome_message: "Welcome to WikiEntries"
   live_statistics: "Live Statistics"
   entries_count: "Entries count"
