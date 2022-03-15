@@ -5,6 +5,5 @@ class AddAttributesToWikiEntries < ActiveRecord::Migration[6.1]
     add_column :wiki_entries, :wordcount, :integer
     add_column :wiki_entries, :snippet, :string
     add_column :wiki_entries, :fullurl, :string
-
   end
 end

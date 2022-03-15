@@ -1,12 +1,10 @@
 class RoomChannel < ApplicationCable::Channel
-
-
   def subscribed
-    stream_from "room"
+    stream_from 'room'
   end
 
   def receive(data)
-    ActionCable.server.broadcast("room", data)
+    ActionCable.server.broadcast('room', data)
   end
 
   def unsubscribed
