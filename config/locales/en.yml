@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  welcome_message: "Welcome to WikiEntries"
+  live_statistics: "Live Statistics"
+  entries_count: "Entries count"

@@ -1,14 +1,14 @@
-<h1> Welcome to WikiEntries </h1>
+<h1> <%= t :welcome_message %> </h1>
 
 <% if current_user%>
         <%= "you have #{current_user.favorite_entries.length} favorite entries"%> <%= link_to 'View', favoritings_path%>
-        <h2> Live Statistics </h2> 
+        <h2> <%= t :live_statistics %> </h2> 
 
         <div id="statistics-div">
             <% unless @wiki_entries.empty?%>
 
                 <ul>
-                    <li>Entries count: <%= @wiki_entries.size%> </li>
+                    <li><%= t :entries_count %>: <%= @wiki_entries.size%> </li>
                     <li>Search terms: <%= SearchTerm.all.size%> </li>   
 
                     <li>Entry with the biggest wordcount: <%= @wiki_entries.order(:wordcount).limit(1).first.title%></li>
