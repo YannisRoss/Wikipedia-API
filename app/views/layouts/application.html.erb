@@ -25,6 +25,12 @@
             <%= button_to 'Sign out', destroy_user_session_path, method: :delete%>
             <button><%= link_to 'Home', root_path%></button>
           </div>
+          <div id='locale-panel'>
+            <button><%= link_to 'English', url_for( :locale => 'en' )%></button>
+            <button><%= link_to 'Ελληνικά', url_for( :locale => 'el' ) %></button>
+
+
+          </div>
           <br> <br>
           <%= form_with model: SearchTerm.new, url: search_terms_path do |form| %>
             <%= form.hidden_field :user_id, value: current_user.id %>

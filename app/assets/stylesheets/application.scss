@@ -36,6 +36,12 @@
     background-color: #24252A;
     color: #edf0f1;
 
+    #locale-panel {
+        position: absolute;
+        top: 0px;
+        left: 40%;
+        right: 40%;
+    }
     a {
         text-decoration: none;
         color: black;
