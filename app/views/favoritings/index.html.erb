@@ -1,9 +1,9 @@
 <h1>Your favorited entries</h1>
 <ul>
 <% current_user.favorite_entries.each do |entry|%>
-    <li><%= link_to entry.title, entry%></li>
+    <li><%= link_to entry.title, entry%>  <%= link_to 'Remove from favorites', favoritings_destroy_path( :id => entry.id  )%> </li>
 
 
     <% end %>
 
-    </ul>
+    </ul> 
