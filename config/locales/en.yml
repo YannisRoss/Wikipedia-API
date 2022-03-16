@@ -34,6 +34,17 @@ en:
   your_favorited_entries: 'Your favorited entries'
   remove_from_favorites: 'Remove from favorites'
   add_to_favorites: 'Add to favorites'
+  #new
+  show_all: 'Show all'
+  title: 'Title'
+  wordcount: 'Word count'
+  lowest_levenshtein: 'Lowest Levenshtein'
+  most_favorites: 'Most favorites'
+  page_id: 'Page ID'
+  search_term: 'Search term'
+  alphabetically: 'Alphabetically'
+  
+  
   welcome_page:
 
     message: "Welcome to WikiEntries"
