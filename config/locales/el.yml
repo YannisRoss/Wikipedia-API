@@ -1,4 +1,22 @@
 el:
-  welcome_message: "Καλώς ήρθατε στο WikiEntries"
-  live_statistics: "Live στατιστικά"
-  entries_count: "Αριθμός λημμάτων"
+  sort_by: 'Ταξινόμηση κατά'
+  welcome_page:
+
+    message: "Καλώς ήρθατε στο WikiEntries"
+    live_statistics: "Live στατιστικά"
+    entries_count: "Αριθμός λημμάτων"
+    search_terms: "Αναζητήσεις"
+    highest_wordcount_entry: "Λήμμα με τον υψηλότερο αριθμό λέξεων"
+    lowest_wordcount_entry: "Λήμμα με τον χαμηλότερο αριθμό λέξεων"
+    highest_title_wordcount_entry: "Λήμμα με τον υψηλότερο αριθμό λέξεων στον τίτλο"
+    lowest_levenshtein_entry: "Λήμμα με την χαμηλότερη απόσταση Levenshtein σε σχέση με τον όρο αναζήτησής του (βαθμός levenshtein και όρος αναζήτησης)"
+    searched_from: "από αναζήτηση του"
+
+    favorites:
+      top_entries: "Λήμματα με τις περισσότερες προσθήκες στα αγαπημένα"
+      times_added: "Προσθήκες στα αγαπημένα"
+
+    latest_wiki_entries: "Τελευταία λήμματα"
+
+  
+
