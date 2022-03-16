@@ -68,10 +68,10 @@
                 <li>Search term: <%= @latest_entries[i].search_term.body%> </li>
                     <% if current_user%>
                         <% if current_user.favorite_entries.include?(@latest_entries[i]) %>
-                            <%= link_to 'Remove from favorites', favoritings_destroy_path( :id => @latest_entries[i].id  )%>  <br>
+                            <%= link_to (t :remove_from_favorites), favoritings_destroy_path( :id => @latest_entries[i].id  )%>  <br>
 
                         <% else %>
-                            <%= link_to 'Add to favorites', favoritings_create_path( :id => @latest_entries[i].id  )%>  <br>
+                            <%= link_to (t :add_to_favorites), favoritings_create_path( :id => @latest_entries[i].id  )%>  <br>
 
                         <%end%>
                     <% end %>

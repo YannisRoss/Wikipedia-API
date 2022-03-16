@@ -1,5 +1,10 @@
 el:
   sort_by: 'Ταξινόμηση κατά'
+  your_favorited_entries: 'Τα αγαπημένα σας λήμματα'
+  remove_from_favorites: 'Αφαίρεση από τα αγαπημένα'
+  add_to_favorites: 'Προσθήκη στα αγαπημένα'
+
+
   welcome_page:
 
     message: "Καλώς ήρθατε στο WikiEntries"

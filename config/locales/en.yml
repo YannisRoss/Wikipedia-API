@@ -31,6 +31,9 @@
 
 en:
   sort_by: 'Sort by'
+  your_favorited_entries: 'Your favorited entries'
+  remove_from_favorites: 'Remove from favorites'
+  add_to_favorites: 'Add to favorites'
   welcome_page:
 
     message: "Welcome to WikiEntries"
