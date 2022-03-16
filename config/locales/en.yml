@@ -30,6 +30,33 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  welcome_message: "Welcome to WikiEntries"
-  live_statistics: "Live Statistics"
-  entries_count: "Entries count"
+  sort_by: 'Sort by'
+  welcome_page:
+
+    message: "Welcome to WikiEntries"
+    live_statistics: "Live Statistics"
+    entries_count: "Entries count"
+    search_terms: "Search terms"
+    highest_wordcount_entry: "Entry with the highest wordcount"
+    lowest_wordcount_entry: "Entry with the lowest wordcount"
+    highest_title_wordcount_entry: "Entry with the most words in title"
+    lowest_levenshtein_entry: "Entry with the lowest levenshtein distance according to its search term (levenshtein value and search term)"
+    searched_from: "searched from"
+
+    favorites:
+      top_entries: "Top favorited entries"
+      times_added: "Times added to favorites"
+
+    latest_wiki_entries: "Latest Wiki Entries"
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,26 +1,26 @@
-<h1> <%= t :welcome_message %> </h1>
+<h1> <%= t 'welcome_page.message' %> </h1>
 
 <% if current_user%>
         <%= "you have #{current_user.favorite_entries.length} favorite entries"%> <%= link_to 'View', favoritings_path%>
-        <h2> <%= t :live_statistics %> </h2> 
+        <h2> <%= t 'welcome_page.live_statistics' %> </h2> 
 
         <div id="statistics-div">
             <% unless @wiki_entries.empty?%>
 
                 <ul>
-                    <li><%= t :entries_count %>: <%= @wiki_entries.size%> </li>
-                    <li>Search terms: <%= SearchTerm.all.size%> </li>   
+                    <li><%= t 'welcome_page.entries_count' %>: <%= @wiki_entries.size%> </li>
+                    <li><%= t 'welcome_page.search_terms' %>: <%= SearchTerm.all.size%> </li>   
 
-                    <li>Entry with the biggest wordcount: <%= @wiki_entries.order(:wordcount).limit(1).first.title%></li>
+                    <li><%= t 'welcome_page.highest_wordcount_entry' %>: <%= @wiki_entries.order(:wordcount).limit(1).first.title%></li>
                     
-                    <li>Entry with the lowest wordcount: <%= @wiki_entries.order(wordcount: :desc).limit(1).first.title%></li>
+                    <li><%= t 'welcome_page.lowest_wordcount_entry' %>: <%= @wiki_entries.order(wordcount: :desc).limit(1).first.title%></li>
 
                     
-                    <li>Entry with the most words in title: <%= @wiki_entries.sort_by{|entry| entry.title}.first.title %></li>
-                    <li>Entry with the lowest levenshtein distance according to its search term (levenshtein value and search term): 
+                    <li><%= t 'welcome_page.highest_title_wordcount_entry'%>: <%= @wiki_entries.sort_by{|entry| entry.title}.first.title %></li>
+                    <li><%= t 'welcome_page.lowest_levenshtein_entry'%>: 
                         <%= link_to @wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.title, 
                         wiki_entry_path(@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first) %>, 
-                        searched from '<%=@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.search_term.body%>' 
+                        <%=t 'welcome_page.searched_from'%> '<%=@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.search_term.body%>' 
                     </li>
                 </ul>
             
@@ -28,14 +28,14 @@
                 
                 <% unless Favoriting.all.length <= 0%>
 
-                    <div> <h2>Top favorited entries</h2>
+                    <div> <h2><%= t 'welcome_page.favorites.top_entries'%></h2>
                         <% sorted_entries = @wiki_entries.sort_by{|entry| entry.favoritees.length}.reverse %>
 
                         <ol> 
                             <% i = 0%>
                             <% while i < 5%>
                                     <% unless sorted_entries[i].favoritees.length == 0 %>
-                                        <li><%= sorted_entries[i].title %> Favorites:<%= sorted_entries[i].favoritees.length %></li>
+                                        <li><%= sorted_entries[i].title %> <%= t 'welcome_page.favorites.times_added' %>:<%= sorted_entries[i].favoritees.length %></li>
                                     <% end %>
                                     <% i = i + 1%>
                             <% end %>
@@ -48,10 +48,10 @@
             
 <% end %>
 
-<h2>Latest Wiki Entries </h2>
+<h2><%= t 'welcome_page.latest_wiki_entries' %></h2>
 
     <%= link_to 'Show all', wiki_entries_url %>
-    <p>Sort by:
+    <p><%= t :sort_by %>:
     <%= link_to 'Title', root_path(sort_factor: 'title') %>
     <%= link_to 'Wordcount', root_path(sort_factor: 'wordcount') %>
     <%= link_to 'Lowest Levenshtein', root_path(sort_factor: 'levenshtein') %>
