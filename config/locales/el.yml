@@ -14,6 +14,12 @@ el:
   entries: 'Λήμματα'
   number_of_entries: 'Αριθμός λημμάτων'
   most_active_users: 'Πιο ενεργοί χρήστες'
+  input_your_search_term: 'Εισάγετε τον όρο αναζήτησης'
+  import: 'Εισαγωγή'
+  home_page: 'Αρχική'
+  sign_out: 'Έξοδος'
+  sign_up: 'Εγγραφή'
+  sign_in: 'Είσοδος'
 
   welcome_page:
 

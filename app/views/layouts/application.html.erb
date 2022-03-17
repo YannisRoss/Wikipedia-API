@@ -21,10 +21,10 @@
         <% if current_user%>
         <%= form_with model: SearchTerm.new, id: "search-term-form", url: search_terms_path do |form| %>
             <%= form.hidden_field :user_id, value: current_user.id %>
-            <%= form.label :body, 'Input your search term' %> <br>
+            <%= form.label :body, (t :input_your_search_term) %> <br>
             <%= form.text_field :body, :required => true%>
             
-            <%= form.submit "Import" %>
+            <%= form.submit (t :import) %>
         <% end %>
           <div id="notice-alert-div">
             <p class="notice"><%= notice %></p>
@@ -32,8 +32,8 @@
           </div>
           <div id='user-panel'>
 
-            <button><%= link_to 'Home', root_path%></button>
-            <%= button_to 'Sign out', destroy_user_session_path, method: :delete%>
+            <button><%= link_to (t :home_page), root_path%></button>
+            <%= button_to (t :sign_out), destroy_user_session_path, method: :delete%>
           </div>
           <div id='locale-panel'>
             <button><%= link_to 'English', url_for( :locale => 'en' )%></button>
@@ -47,10 +47,14 @@
         <% else %>
         <div id='user-panel'>
 
-          <button><%= link_to 'Sign up', new_user_registration_url%></button>
-          <button><%= link_to 'Sign in', new_user_session_url%></button>
-          <button><%= link_to 'Home', root_path%></button>
+          <button><%= link_to (t :sign_up), new_user_registration_url%></button>
+          <button><%= link_to (t :sign_in), new_user_session_url%></button>
+          <button><%= link_to (t :home_page), root_path%></button>
         </div>
+        <div id='locale-panel'>
+            <button><%= link_to 'English', url_for( :locale => 'en' )%></button>
+            <button><%= link_to 'Ελληνικά', url_for( :locale => 'el' ) %></button>
+          </div>
         <% end %>
 
       </nav>

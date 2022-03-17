@@ -45,7 +45,14 @@ en:
   entries: 'Entries'
   number_of_entries: 'Number of entries'
   most_active_users: 'Most active users'
-
+  #new
+  input_your_search_term: 'Input your search term'
+  import: 'Import'
+  home_page: 'Home'
+  sign_out: 'Sign out'
+  sign_up: 'Sign up'
+  sign_in: 'Sign in'
+  
 
   welcome_page:
 
