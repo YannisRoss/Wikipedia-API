@@ -30,4 +30,56 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  sort_by: 'Sort by'
+  your_favorited_entries: 'Your favorited entries'
+  remove_from_favorites: 'Remove from favorites'
+  add_to_favorites: 'Add to favorites'
+  show_all: 'Show all'
+  title: 'Title'
+  wordcount: 'Word count'
+  lowest_levenshtein: 'Lowest Levenshtein'
+  most_favorites: 'Most favorites'
+  page_id: 'Page ID'
+  search_term: 'Search term'
+  alphabetically: 'Alphabetically'
+  entries: 'Entries'
+  number_of_entries: 'Number of entries'
+  most_active_users: 'Most active users'
+  #new
+  input_your_search_term: 'Input your search term'
+  import: 'Import'
+  home_page: 'Home'
+  sign_out: 'Sign out'
+  sign_up: 'Sign up'
+  sign_in: 'Sign in'
+  
+
+  welcome_page:
+
+    message: "Welcome to WikiEntries"
+    live_statistics: "Live Statistics"
+    entries_count: "Entries count"
+    search_terms: "Search terms"
+    highest_wordcount_entry: "Entry with the highest wordcount"
+    lowest_wordcount_entry: "Entry with the lowest wordcount"
+    highest_title_wordcount_entry: "Entry with the most words in title"
+    lowest_levenshtein_entry: "Entry with the lowest levenshtein distance according to its search term (levenshtein value and search term)"
+    searched_from: "searched from"
+
+    favorites:
+      top_entries: "Top favorited entries"
+      times_added: "Times added to favorites"
+
+    latest_wiki_entries: "Latest Wiki Entries"
+
+
+
+
+
+
+
+
+
+
+
+

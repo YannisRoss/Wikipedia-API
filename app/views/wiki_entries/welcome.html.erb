@@ -1,26 +1,26 @@
-<h1> Welcome to WikiEntries </h1>
+<h1> <%= t 'welcome_page.message' %> </h1>
 
 <% if current_user%>
         <%= "you have #{current_user.favorite_entries.length} favorite entries"%> <%= link_to 'View', favoritings_path%>
-        <h2> Live Statistics </h2> 
+        <h2> <%= t 'welcome_page.live_statistics' %> </h2> 
 
         <div id="statistics-div">
             <% unless @wiki_entries.empty?%>
 
                 <ul>
-                    <li>Entries count: <%= @wiki_entries.size%> </li>
-                    <li>Search terms: <%= SearchTerm.all.size%> </li>   
+                    <li><%= t 'welcome_page.entries_count' %>: <%= @wiki_entries.size%> </li>
+                    <li><%= t 'welcome_page.search_terms' %>: <%= SearchTerm.all.size%> </li>   
 
-                    <li>Entry with the biggest wordcount: <%= @wiki_entries.order(:wordcount).limit(1).first.title%></li>
+                    <li><%= t 'welcome_page.highest_wordcount_entry' %>: <%= @wiki_entries.order(:wordcount).limit(1).first.title%></li>
                     
-                    <li>Entry with the lowest wordcount: <%= @wiki_entries.order(wordcount: :desc).limit(1).first.title%></li>
+                    <li><%= t 'welcome_page.lowest_wordcount_entry' %>: <%= @wiki_entries.order(wordcount: :desc).limit(1).first.title%></li>
 
                     
-                    <li>Entry with the most words in title: <%= @wiki_entries.sort_by{|entry| entry.title}.first.title %></li>
-                    <li>Entry with the lowest levenshtein distance according to its search term (levenshtein value and search term): 
+                    <li><%= t 'welcome_page.highest_title_wordcount_entry'%>: <%= @wiki_entries.sort_by{|entry| entry.title}.first.title %></li>
+                    <li><%= t 'welcome_page.lowest_levenshtein_entry'%>: 
                         <%= link_to @wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.title, 
                         wiki_entry_path(@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first) %>, 
-                        searched from '<%=@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.search_term.body%>' 
+                        <%=t 'welcome_page.searched_from'%> '<%=@wiki_entries.sort_by{|entry| entry.levenshtein_distance(entry.title, entry.search_term.body)}.first.search_term.body%>' 
                     </li>
                 </ul>
             
@@ -28,14 +28,14 @@
                 
                 <% unless Favoriting.all.length <= 0%>
 
-                    <div> <h2>Top favorited entries</h2>
+                    <div> <h2><%= t 'welcome_page.favorites.top_entries'%></h2>
                         <% sorted_entries = @wiki_entries.sort_by{|entry| entry.favoritees.length}.reverse %>
 
                         <ol> 
                             <% i = 0%>
                             <% while i < 5%>
                                     <% unless sorted_entries[i].favoritees.length == 0 %>
-                                        <li><%= sorted_entries[i].title %> Favorites:<%= sorted_entries[i].favoritees.length %></li>
+                                        <li><%= sorted_entries[i].title %> <%= t 'welcome_page.favorites.times_added' %>:<%= sorted_entries[i].favoritees.length %></li>
                                     <% end %>
                                     <% i = i + 1%>
                             <% end %>
@@ -48,10 +48,10 @@
             
 <% end %>
 
-<h2>Latest Wiki Entries </h2>
+<h2><%= t 'welcome_page.latest_wiki_entries' %></h2>
 
-    <%= link_to 'Show all', wiki_entries_url %>
-    <p>Sort by:
+    <%= link_to (t :show_all), wiki_entries_url %>
+    <p><%= t :sort_by %>:
     <%= link_to 'Title', root_path(sort_factor: 'title') %>
     <%= link_to 'Wordcount', root_path(sort_factor: 'wordcount') %>
     <%= link_to 'Lowest Levenshtein', root_path(sort_factor: 'levenshtein') %>
@@ -62,16 +62,16 @@
         <% while i < 10%>
             <% unless @latest_entries[i].nil?%>
                 <li><%= link_to @latest_entries[i].title, @latest_entries[i]%> </li>
-                <li>Page id: <%= @latest_entries[i].pageid%> </li>
+                <li><%= t :page_id%>: <%= @latest_entries[i].pageid%> </li>
                 <li>levens <%= @latest_entries[i].levenshtein_distance(@latest_entries[i].title,@latest_entries[i].search_term.body)%></li>
                 <li><a href='<%= @latest_entries[i].fullurl%>' target='blank'>View on Wikipedia</a> </li>
-                <li>Search term: <%= @latest_entries[i].search_term.body%> </li>
+                <li><%= t :search_term %>: <%= @latest_entries[i].search_term.body%> </li>
                     <% if current_user%>
                         <% if current_user.favorite_entries.include?(@latest_entries[i]) %>
-                            <%= link_to 'Remove from favorites', favoritings_destroy_path( :id => @latest_entries[i].id  )%>  <br>
+                            <%= link_to (t :remove_from_favorites), favoritings_destroy_path( :id => @latest_entries[i].id  )%>  <br>
 
                         <% else %>
-                            <%= link_to 'Add to favorites', favoritings_create_path( :id => @latest_entries[i].id  )%>  <br>
+                            <%= link_to (t :add_to_favorites), favoritings_create_path( :id => @latest_entries[i].id  )%>  <br>
 
                         <%end%>
                     <% end %>
@@ -83,19 +83,19 @@
     </ul>
 
 
-<h2>Search Terms</h2>
+<h2><%= t :search_terms %></h2>
 
-   <%= link_to 'Show all', search_terms_url %>
-    <p>Sort:
-    <%= link_to 'Alphabetically', root_path(term_factor: 'alphabetically') %>
-    <%= link_to 'Entries', root_path(term_factor: 'entries') %>
+   <%= link_to (t :show_all), search_terms_url %>
+    <p><%= t :sort_by%>:
+    <%= link_to (t :alphabetically), root_path(term_factor: 'alphabetically') %>
+    <%= link_to (t :entries), root_path(term_factor: 'entries') %>
     <br>
     <% i = 0%>
     <ul>
         <% while i < 10%>
             <% unless @latest_terms[i].nil?%>
                 <li><%= link_to @latest_terms[i].body, @latest_terms[i]%> </li>
-                <p>Number of entries: <%= @latest_terms[i].wiki_entries.length%> </p>
+                <p><%= t :number_of_entries %>: <%= @latest_terms[i].wiki_entries.length%> </p>
 
                         <% if (current_user && current_user.admin?) || current_user == @latest_terms[i].user %>
                             <%= link_to 'Edit', edit_search_term_path(@latest_terms[i])%>
@@ -113,7 +113,7 @@
 
 
 <% if current_user && current_user.admin? %>
-    <h2>Most active users </h2>
+    <h2><%= t :most_active_users%> </h2>
 
     <%@top_active_users.each do |user|%>
         <%= user.email %>, activity factor <%= user.activity_factor %><br>

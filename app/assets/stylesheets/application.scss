@@ -22,30 +22,47 @@
 
  html,body { margin: 0px; } 
 
- .notice, .alert {
-
-    position: absolute;
-    margin-left: 25vw;
-    margin-right: 25vw;
-    width: 50vw;
-    top: 0px
-
- }
+ 
  #navbar {
+     display: flex;
+     justify-content: space-around;
     box-sizing: border-box;
     background-color: #24252A;
     color: #edf0f1;
+    padding-top: 1%;
+    text-decoration: none;
+    position: fixed;
 
+    width: 100vw;
+    height: 10vh;
+    
+    #search-term-form {
+        width: auto;
+        
+
+    }
+    #notice-alert-div{
+        width: 50vw;
+        .notice, .alert {
+            max-width: fit-content;
+            // position: absolute;
+         }
+    }
+    #user-panel{
+        width: auto;
+        display: ruby;
+    }
+    #locale-panel {
+        width: auto;
+     
+        
+
+    }
     a {
         text-decoration: none;
         color: black;
     }
-    text-decoration: none;
-    
-    position: fixed;
-    padding: 10px;
-    width: 100vw;
-    height: 10vh;
+
  }
 
 #container {
@@ -55,8 +72,4 @@
 #page-contents {
     margin-top: 10vh;
 }
- #user-panel {
-     position: absolute;
-     top: 0;
-     right: 5vw;
- }
+
