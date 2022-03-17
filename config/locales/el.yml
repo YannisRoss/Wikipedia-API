@@ -3,7 +3,17 @@ el:
   your_favorited_entries: 'Τα αγαπημένα σας λήμματα'
   remove_from_favorites: 'Αφαίρεση από τα αγαπημένα'
   add_to_favorites: 'Προσθήκη στα αγαπημένα'
-
+  show_all: 'Εμφάνιση όλων'
+  title: 'Τίτλος'
+  wordcount: 'Αριθμός λέξεων'
+  lowest_levenshtein: 'Χαμηλότερο Levenshtein'
+  most_favorites: 'Περισσότερες προσθήκες στα αγαπημένα'
+  page_id: 'ID της σελίδας'
+  search_term: 'Όρος αναζήτησης'
+  alphabetically: 'Αλφαβητικά'
+  entries: 'Λήμματα'
+  number_of_entries: 'Αριθμός λημμάτων'
+  most_active_users: 'Πιο ενεργοί χρήστες'
 
   welcome_page:
 

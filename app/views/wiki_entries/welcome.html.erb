@@ -83,19 +83,19 @@
     </ul>
 
 
-<h2>Search Terms</h2>
+<h2><%= t :search_terms %></h2>
 
-   <%= link_to 'Show all', search_terms_url %>
+   <%= link_to (t :show_all), search_terms_url %>
     <p><%= t :sort_by%>:
     <%= link_to (t :alphabetically), root_path(term_factor: 'alphabetically') %>
-    <%= link_to 'Entries', root_path(term_factor: 'entries') %>
+    <%= link_to (t :entries), root_path(term_factor: 'entries') %>
     <br>
     <% i = 0%>
     <ul>
         <% while i < 10%>
             <% unless @latest_terms[i].nil?%>
                 <li><%= link_to @latest_terms[i].body, @latest_terms[i]%> </li>
-                <p>Number of entries: <%= @latest_terms[i].wiki_entries.length%> </p>
+                <p><%= t :number_of_entries %>: <%= @latest_terms[i].wiki_entries.length%> </p>
 
                         <% if (current_user && current_user.admin?) || current_user == @latest_terms[i].user %>
                             <%= link_to 'Edit', edit_search_term_path(@latest_terms[i])%>
@@ -113,7 +113,7 @@
 
 
 <% if current_user && current_user.admin? %>
-    <h2>Most active users </h2>
+    <h2><%= t :most_active_users%> </h2>
 
     <%@top_active_users.each do |user|%>
         <%= user.email %>, activity factor <%= user.activity_factor %><br>

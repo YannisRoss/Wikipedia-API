@@ -34,7 +34,6 @@ en:
   your_favorited_entries: 'Your favorited entries'
   remove_from_favorites: 'Remove from favorites'
   add_to_favorites: 'Add to favorites'
-  #new
   show_all: 'Show all'
   title: 'Title'
   wordcount: 'Word count'
@@ -43,8 +42,11 @@ en:
   page_id: 'Page ID'
   search_term: 'Search term'
   alphabetically: 'Alphabetically'
-  
-  
+  entries: 'Entries'
+  number_of_entries: 'Number of entries'
+  most_active_users: 'Most active users'
+
+
   welcome_page:
 
     message: "Welcome to WikiEntries"
