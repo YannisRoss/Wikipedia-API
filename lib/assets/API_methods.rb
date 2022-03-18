@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module APIMethods
   require 'uri'
   require 'net/http'
@@ -44,9 +46,9 @@ module APIMethods
 
   def sort(articles, by_wordcount, descending)
     articles = if by_wordcount
-                 articles.sort_by { |article| article.wordcount }
+                 articles.sort_by(&:wordcount)
                else
-                 articles.sort_by { |article| article.title }
+                 articles.sort_by(&:title)
                end
 
     articles = articles.reverse if descending
@@ -56,8 +58,8 @@ module APIMethods
   def levenshtein_distance(s, t)
     m = s.length
     n = t.length
-    return m if n == 0
-    return n if m == 0
+    return m if n.zero?
+    return n if m.zero?
 
     d = Array.new(m + 1) { Array.new(n + 1) }
 

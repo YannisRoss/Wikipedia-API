@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchTermsController < ApplicationController
   require './lib/assets/API_methods'
   include APIMethods

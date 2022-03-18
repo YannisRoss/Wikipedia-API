@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAttributesToWikiEntries < ActiveRecord::Migration[6.1]
   def change
     add_column :wiki_entries, :title, :string

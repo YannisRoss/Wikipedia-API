@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
+  get 'favoritings/create'
+  get 'favoritings/destroy'
+  get 'search_terms/destroy'
 
-    get 'favoritings/create'
-    get 'favoritings/destroy'
-    get 'search_terms/destroy'
+  devise_for :users
 
-    devise_for :users
-
-    root to: 'wiki_entries#welcome'
-  scope "(:locale)" do
+  root to: 'wiki_entries#welcome'
+  scope '(:locale)' do
     resources :wiki_entries
     resources :favoritings
 

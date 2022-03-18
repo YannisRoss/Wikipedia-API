@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavoritingsController < ApplicationController
   def index
     @favoritings = Favoriting.all
@@ -9,7 +11,8 @@ class FavoritingsController < ApplicationController
     if @favoriting.save
       redirect_back fallback_location: root_path, notice: 'Item successfully added to favorites.'
     else
-      redirect_back fallback_location: root_path, alert: "Favorite addition failed, #{@favoriting.errors.full_messages.first}"
+      redirect_back fallback_location: root_path,
+                    alert: "Favorite addition failed, #{@favoriting.errors.full_messages.first}"
     end
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WikiEntry < ApplicationRecord
   has_many :favoritings
   belongs_to :search_term
@@ -6,8 +8,8 @@ class WikiEntry < ApplicationRecord
   def levenshtein_distance(s, t)
     m = s.length
     n = t.length
-    return m if n == 0
-    return n if m == 0
+    return m if n.zero?
+    return n if m.zero?
 
     d = Array.new(m + 1) { Array.new(n + 1) }
 
