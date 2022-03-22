@@ -20,6 +20,13 @@ el:
   sign_out: 'Έξοδος'
   sign_up: 'Εγγραφή'
   sign_in: 'Είσοδος'
+  wiki_entries_index: 'Πίνακας λημμάτων'
+  view: 'Προβολή'
+  all: 'Όλα'
+
+
+
+
 
   welcome_page:
 

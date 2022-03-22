@@ -1,12 +1,10 @@
-<h1>Wiki Entries index </h1>
+<h1><%= t :wiki_entries_index %> </h1>
  
 
-    <h2> Wiki Entries </h2>
-
-        View: <%= link_to '10', wiki_entries_path(offset: '10')%> 
+        <%= t :view %>: <%= link_to '10', wiki_entries_path(offset: '10')%> 
         <%= link_to '50', wiki_entries_path(offset: '50') %> 
         <%= link_to '100', wiki_entries_path(offset: '100')%>  
-        <%= link_to 'All', wiki_entries_path(offset: 'all')%>   
+        <%= link_to (t 'all'), wiki_entries_path(offset: 'all')%>   
 
         <br> <br> 
   
@@ -15,10 +13,10 @@
                 <%=link_to entry.title, entry%> 
                 <% if current_user %>
                     <% if current_user.favorite_entries.include?(entry) %>
-                        <%= link_to 'Remove from favorites', favoritings_destroy_path( :id => entry.id  )%>  
+                        <%= link_to (t 'remove_from_favorites'), favoritings_destroy_path( :id => entry.id  )%>  
 
                     <% else %>
-                        <%= link_to 'Add to favorites', favoritings_create_path( :id => entry.id  )%>  
+                        <%= link_to (t 'add_to_favorites'), favoritings_create_path( :id => entry.id  )%>  
 
                     <%end%>
                 <% end %>
