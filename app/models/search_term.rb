@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchTerm < ApplicationRecord
   require './lib/assets/API_methods'
   include APIMethods

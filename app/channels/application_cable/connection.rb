@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
     identified_by :current_user
@@ -10,10 +12,8 @@ module ApplicationCable
 
     def find_verified_user
       if current_user == env['warden'].user
-        current_user
-      else
-        current_user
       end
+      current_user
     end
   end
 end

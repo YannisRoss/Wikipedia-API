@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WikiEntriesController < ApplicationController
   def welcome
     @wiki_entries = WikiEntry.all
@@ -5,9 +7,9 @@ class WikiEntriesController < ApplicationController
     if params[:sort_factor]
       case params[:sort_factor]
       when 'title'
-        @latest_entries = @latest_entries.sort_by { |entry| entry.title }
+        @latest_entries = @latest_entries.sort_by(&:title)
       when 'wordcount'
-        @latest_entries = @latest_entries.sort_by { |entry| entry.wordcount }
+        @latest_entries = @latest_entries.sort_by(&:wordcount)
       when 'levenshtein'
         @latest_entries = @latest_entries.sort_by do |entry|
           entry.levenshtein_distance(entry.title, entry.search_term.body)
@@ -21,13 +23,13 @@ class WikiEntriesController < ApplicationController
     if params[:term_factor]
       case params[:term_factor]
       when 'alphabetically'
-        @latest_terms = @latest_terms.sort_by { |term| term.body }
+        @latest_terms = @latest_terms.sort_by(&:body)
       when 'entries'
         @latest_terms = @latest_terms.sort_by { |term| term.wiki_entries.length }
       end
     end
 
-    @top_active_users = User.all.sort_by { |user| user.activity_factor }.last(5).reverse
+    @top_active_users = User.all.sort_by(&:activity_factor).last(5).reverse
   end
 
   def index

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StatisticsBroadcasterJob < ApplicationJob
   queue_as :default
 
@@ -20,13 +22,13 @@ class StatisticsBroadcasterJob < ApplicationJob
 
       statistics[:wordcount_max_min] =
         wiki_entries.order(:wordcount).limit(1).first.title, wiki_entries.order(wordcount: :desc).limit(1).first.title
-      statistics[:biggest_title] = wiki_entries.sort_by { |entry| entry.title }.first.title
-      statistics[:lowest_levenshtein] = wiki_entries.sort_by do |entry|
+      statistics[:biggest_title] = wiki_entries.min_by(&:title).title
+      statistics[:lowest_levenshtein] = wiki_entries.min_by do |entry|
         entry.levenshtein_distance(entry.title, entry.search_term.body)
-      end.first.title
-      statistics[:lowest_levenshtein_term] = wiki_entries.sort_by do |entry|
+      end.title
+      statistics[:lowest_levenshtein_term] = wiki_entries.min_by do |entry|
         entry.levenshtein_distance(entry.title, entry.search_term.body)
-      end.first.search_term.body
+      end.search_term.body
 
     end
 
