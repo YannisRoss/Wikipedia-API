@@ -29,13 +29,6 @@ module APIMethods
                                                    pageid: item['pageid'].to_i, wordcount: item['wordcount'], snippet: item['snippet'], fullurl: fullurl))
 
         end
-
-        if retrieved_articles.length < 50
-          # search(search_term, sroffset+10, retrieved_articles)
-
-        else
-          # search(search_term, sroffset+(10-retrieved_articles.length), retrieved_articles)
-        end
       end
     end
   end

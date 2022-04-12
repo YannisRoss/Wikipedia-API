@@ -4,8 +4,6 @@ class StatisticsBroadcasterJob < ApplicationJob
   queue_as :default
 
   def perform(*_args)
-    # Do something later
-    puts 'sidekiq job started'
     wiki_entries = WikiEntry.all
     search_term = SearchTerm.last
 
