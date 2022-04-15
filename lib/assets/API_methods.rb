@@ -6,7 +6,6 @@ module APIMethods
   require 'json'
 
   def search(search_term, sroffset = 10, retrieved_articles = [])
-    puts "Searching for #{search_term.body}: retrieved_articles: #{retrieved_articles.length}, sroffset #{sroffset}"
 
     uri = URI("https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=#{search_term.body}&format=json&sroffset=#{sroffset}")
     response = Net::HTTP.get_response(uri)
@@ -27,7 +26,6 @@ module APIMethods
 
           retrieved_articles.push(WikiEntry.create(search_term_id: search_term.id, title: item['title'],
                                                    pageid: item['pageid'].to_i, wordcount: item['wordcount'], snippet: item['snippet'], fullurl: fullurl))
-
         end
       end
     end
