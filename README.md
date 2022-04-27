@@ -37,6 +37,7 @@ The terminal window should show the URL your server is listening on, which by de
 
 
 <a name="running"/>
+
 ## The welcome page
 
 To use the project, create an account on the top right. Authentication is handled by the Devise gem.
