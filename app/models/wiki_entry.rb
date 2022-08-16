@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class WikiEntry < ApplicationRecord
-  has_many :favoritings
   belongs_to :search_term
+  has_many :favoritings
   has_many :favoritees, through: :favoritings, source: :user
 
   def levenshtein_distance(s, t)
